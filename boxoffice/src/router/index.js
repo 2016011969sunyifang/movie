@@ -1,20 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
+import filmRouter from '@/router/routes/film.js'
+import cinema from '@/router/routes/cinema.js'
+import center from '@/router/routes/center.js'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/film'
   },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  }
+  filmRouter,
+  center,
+  cinema,
+
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   component: () => import('../views/About.vue')
+  // }
 ]
 
 const router = new VueRouter({

@@ -1,18 +1,30 @@
 
 <template>
-  <div id="app">
-    <router-view> </router-view>
-    <comfooternav></comfooternav>
+  <div class="nav">
+    <ul>
+      <router-link active-class="active" to="/film" tag="li">
+        <i class="iconfont icon-dianying"></i>
+        <p>电影</p>
+      </router-link>
+      <router-link active-class="active" to="/cinema" tag="li">
+        <i class="iconfont icon-yingyuan"></i>
+        <p>影院</p>
+      </router-link>
+      <router-link active-class="active" to="/center" tag="li">
+        <i class="iconfont icon-weibiaoti2fuzhi12"></i>
+        <p>我的</p>
+      </router-link>
+    </ul>
   </div>
 </template>
 
 
 
 <script>
-import comfooternav from "./components/comfooternav.vue";
+import "@/assets/icontont/iconfont1/iconfont.css";
 export default {
   //组件名字
-  name: "app",
+  name: "comfooternav",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -27,9 +39,7 @@ export default {
     },
   },
   //组件注册
-  components: {
-    comfooternav,
-  },
+  components: {},
   // vue数据集中管理
   data() {
     return {
@@ -87,27 +97,40 @@ export default {
 };
 </script>
 
-<style lang="scss">
-* {
-  margin: 0px;
-  padding: 0px;
-}
-html,
-body {
-  // 不能乱捏
-  touch-action: none;
-  height: 100%;
-  ul li {
-    list-style: none;
+
+
+
+
+<style lang="scss" scoped>
+.nav {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  border-top: 1px solid #ccc;
+  height: 50px;
+  text-align: center;
+  background-color: #fff;
+  color: #7a7e83;
+  width: 100%;
+  ul {
+    display: flex;
+    align-items: center;
+    li {
+      margin-top: 5px;
+      flex: 1;
+      height: 43px;
+      &.active {
+        color: #fe5100;
+      }
+      p {
+        margin-top: 2px;
+      }
+      i {
+        font-size: 20px;
+      }
+    }
   }
 }
-</style>
-
-
-
-
-
-<style scoped lang="scss">
 </style>
 
 

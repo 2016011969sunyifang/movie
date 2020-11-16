@@ -1,18 +1,23 @@
 
 <template>
-  <div id="app">
-    <router-view> </router-view>
-    <comfooternav></comfooternav>
+  <div>
+    <h1>film</h1>
+    <button @click="aaa">请求卖座数据</button>
+    <div v-for="(item, index) in data1" :key="index">
+      <h1>{{ item.name }}</h1>
+      <img :src="item.imgUrl" alt="" />
+    </div>
+    <!-- <img :src="data1.imgUrl" alt="" /> -->
   </div>
 </template>
 
 
 
 <script>
-import comfooternav from "./components/comfooternav.vue";
+import axios from "axios";
 export default {
   //组件名字
-  name: "app",
+  name: "film",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -27,19 +32,41 @@ export default {
     },
   },
   //组件注册
-  components: {
-    comfooternav,
-  },
+  components: {},
   // vue数据集中管理
   data() {
     return {
-      value: "1",
+      data1: "1",
     };
   },
   //方法 函数写这里
   methods: {
     aaa() {
-      console.log("aaa");
+      axios.interceptors.request.use(
+        function (config) {
+          config.headers = {
+            "X-Client-Info":
+              '{"a":"3000","ch":"1002","v":"5.0.4","e":"1605514607459312392568833","bc":"310100"}',
+            "X-Host": "mall.cfg.film-float.banner",
+          };
+          return config;
+        },
+        function (err) {
+          if (err) {
+            console.log("err:", err);
+          }
+        }
+      );
+      axios
+        .get("https://m.maizuo.com/gateway?cityId=310100&k=6039776")
+        .then((data) => {
+          //   console.log(data);
+          //   console.log(data.data);
+          //   console.log(data.data.data);
+          this.data1 = data.data;
+          //   console.log(this.data1.data.imgUrl);
+          //   console.log(data.data.data.imgUrl);
+        });
     },
   },
   //计算属性
@@ -86,22 +113,6 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-* {
-  margin: 0px;
-  padding: 0px;
-}
-html,
-body {
-  // 不能乱捏
-  touch-action: none;
-  height: 100%;
-  ul li {
-    list-style: none;
-  }
-}
-</style>
 
 
 
