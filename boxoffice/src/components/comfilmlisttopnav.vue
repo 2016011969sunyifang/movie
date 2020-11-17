@@ -1,24 +1,23 @@
 
 <template>
-  <div>
-    <!-- <div>
-      <img :src="imgUrl" alt="" />
-    </div> -->
-    <!-- <img :src="data1.imgUrl" alt="" /> -->
-    <h1>film</h1>
-    <comfilmlisttopnav></comfilmlisttopnav>
-    <router-view></router-view>
-  </div>
+  <nav>
+    <ul>
+      <router-link tag="li" to="/film/nowplaying" active-class="active">
+        <span>正在热映</span>
+      </router-link>
+      <router-link tag="li" to="/film/comingsoon" active-class="active">
+        <span>即将上映</span>
+      </router-link>
+    </ul>
+  </nav>
 </template>
 
 
 
 <script>
-import axios from "axios";
-import comfilmlisttopnav from "./../../components/comfilmlisttopnav";
 export default {
   //组件名字
-  name: "film",
+  name: "comfilmlisttopnav",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -33,17 +32,19 @@ export default {
     },
   },
   //组件注册
-  components: {
-    comfilmlisttopnav,
-  },
+  components: {},
   // vue数据集中管理
   data() {
     return {
-      //   imgUrl: "",
+      value: "1",
     };
   },
   //方法 函数写这里
-  methods: {},
+  methods: {
+    aaa() {
+      console.log("aaa");
+    },
+  },
   //计算属性
   computed: {},
   //侦听器
@@ -62,30 +63,7 @@ export default {
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
-  mounted() {
-    // axios.interceptors.request.use(
-    //   function (config) {
-    //     config.headers = {
-    //       "X-Client-Info":
-    //         '{"a":"3000","ch":"1002","v":"5.0.4","e":"1605514607459312392568833","bc":"310100"}',
-    //       "X-Host": "mall.cfg.film-float.banner",
-    //     };
-    //     return config;
-    //   },
-    //   function (err) {
-    //     if (err) {
-    //       console.log("err:", err);
-    //     }
-    //   }
-    // );
-    // axios
-    //   .get("https://m.maizuo.com/gateway?cityId=310100&k=6039776")
-    //   .then((data) => {
-    //     this.imgUrl = data.data.data.imgUrl;
-    //     console.log(this.imgUrl);
-    //   });
-    // // console.log(this.data1);
-  },
+  mounted() {},
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
@@ -116,10 +94,29 @@ export default {
 
 
 
-<style scoped lang="scss">
-img {
-  height: 210px;
-  width: 373px;
+<style lang="scss" scoped>
+nav {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #ccc;
+  ul {
+    display: flex;
+    text-align: center;
+    li {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      &.active {
+        span {
+          width: 40%;
+          border-bottom: 2px solid red;
+          display: block;
+          color: #fe5100;
+        }
+      }
+    }
+  }
 }
 </style>
 
