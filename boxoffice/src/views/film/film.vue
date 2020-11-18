@@ -5,8 +5,8 @@
       <img :src="imgUrl" alt="" />
     </div> -->
     <!-- <img :src="data1.imgUrl" alt="" /> -->
-    <h1>film</h1>
-    <comfilmlisttopnav></comfilmlisttopnav>
+    <!-- <img :src="imgUrl" alt="" /> -->
+    <comfilmlisttopnav :class="fixed ? 'fixed' : ''"></comfilmlisttopnav>
     <router-view></router-view>
   </div>
 </template>
@@ -16,6 +16,7 @@
 <script>
 import axios from "axios";
 import comfilmlisttopnav from "./../../components/comfilmlisttopnav";
+// import  comloading  from "./../../components/comloading";
 export default {
   //组件名字
   name: "film",
@@ -40,6 +41,7 @@ export default {
   data() {
     return {
       //   imgUrl: "",
+      fixed: false,
     };
   },
   //方法 函数写这里
@@ -63,6 +65,19 @@ export default {
   beforeMount() {},
   //页面渲染之后
   mounted() {
+    //吸顶效果
+    window.addEventListener(
+      "scroll",
+      (e) => {
+        let top = document.documentElement.scrollTop;
+        if (top > 200) {
+          this.fixed = true;
+        } else {
+          this.fixed = false;
+        }
+      },
+      true
+    );
     // axios.interceptors.request.use(
     //   function (config) {
     //     config.headers = {
@@ -82,9 +97,7 @@ export default {
     //   .get("https://m.maizuo.com/gateway?cityId=310100&k=6039776")
     //   .then((data) => {
     //     this.imgUrl = data.data.data.imgUrl;
-    //     console.log(this.imgUrl);
     //   });
-    // // console.log(this.data1);
   },
   //页面销毁之前
   beforeDestroy() {},
@@ -117,9 +130,10 @@ export default {
 
 
 <style scoped lang="scss">
-img {
-  height: 210px;
-  width: 373px;
+.fixed {
+  position: fixed;
+  top: 0;
+  background-color: #ffffff;
 }
 </style>
 

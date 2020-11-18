@@ -99,7 +99,7 @@ nav {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid #ccc;
+  line-height: 50px;
   ul {
     display: flex;
     text-align: center;
@@ -111,13 +111,35 @@ nav {
         span {
           width: 40%;
           border-bottom: 2px solid red;
-          display: block;
           color: #fe5100;
         }
       }
     }
   }
 }
+// nav {
+//   width: 100%;
+//   height: 50px;
+//   line-height: 50px;
+//   border-bottom: 1px solid #ccc;
+//   ul {
+//     display: flex;
+//     text-align: center;
+//     li {
+//       flex: 1;
+//       display: flex;
+//       justify-content: center;
+//       &.active {
+//         span {
+//           width: 40%;
+//           border-bottom: 2px solid red;
+//           display: block;
+//           color: #fe5100;
+//         }
+//       }
+//     }
+//   }
+// }
 </style>
 
 

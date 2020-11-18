@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import filmRouter from '@/router/routes/film.js'
 import cinema from '@/router/routes/cinema.js'
 import center from '@/router/routes/center.js'
+import detail from '@/router/routes/detail.js'
 const routes = [
   {
     path: '/',
@@ -14,6 +15,7 @@ const routes = [
   filmRouter,
   center,
   cinema,
+  detail
 
   // {
   //   path: '/about',

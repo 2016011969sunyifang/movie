@@ -1,14 +1,18 @@
 
 <template>
-  <div>我是ComingSoon</div>
+  <div>
+    <comfilmlist :list1="list1" :type="type" :key="type"></comfilmlist>
+  </div>
 </template>
 
 
 
 <script>
+import { ComingSoonListData } from "./../../api/api";
+import comfilmlist from "./../../components/comfilmlist";
 export default {
   //组件名字
-  name: "ComingSoon",
+  name: "NowPlaying",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -23,11 +27,16 @@ export default {
     },
   },
   //组件注册
-  components: {},
+  components: {
+    comfilmlist,
+  },
   // vue数据集中管理
   data() {
     return {
       value: "1",
+      list1: [],
+      page: 1,
+      type: 1,
     };
   },
   //方法 函数写这里
@@ -54,7 +63,10 @@ export default {
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
-  mounted() {},
+  async mounted() {
+    let ret = await ComingSoonListData(this.page);
+    this.list1 = ret.data.data.films;
+  },
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
