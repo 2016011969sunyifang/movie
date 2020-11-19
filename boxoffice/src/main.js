@@ -10,6 +10,13 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+
+
+//使用bus传值
+Vue.prototype.eventBus = new Vue();
+
+
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
   loading: "/img/loading-svg/loading-bars.svg",

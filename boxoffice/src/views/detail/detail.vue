@@ -7,7 +7,7 @@
     <div class="film-detail">
       <div>
         <span>{{ film.name }}</span>
-        <span class="middle-code">{{ film.grade }}</span>
+        <span class="middle-code">{{ lev }}</span>
       </div>
       <div>{{ film.category }}</div>
       <div>{{ film.premiereAt | timeparser }}上映</div>
@@ -56,6 +56,7 @@ export default {
       value: 1,
       film: {},
       flag: false,
+      lev: "",
     };
   },
   //方法 函数写这里
@@ -79,18 +80,23 @@ export default {
   //组件创建之前  new操作符桥梁函数return 之前
   beforeCreate() {},
   //组件创建之后
-  created() {},
+  created() {
+    this.eventBus.$emit("footernav", false);
+  },
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
   async mounted() {
     let ret = await moiveDetail(this.$route.params.filmId);
     this.film = ret.data.data.film;
+    this.lev = ret.data.data.film.item.name;
   },
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
-  destroyed() {},
+  destroyed() {
+    this.eventBus.$emit("footernav", true);
+  },
   //页面视图数据更新之前
   beforeUpdate() {},
   //页面视图数据更新之后

@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <router-view> </router-view>
-    <comfooternav></comfooternav>
+    <comfooternav v-if="is_show"></comfooternav>
   </div>
 </template>
 
@@ -34,6 +34,8 @@ export default {
   data() {
     return {
       value: "1",
+      is_show: true,
+      // is_show: true,
     };
   },
   //方法 函数写这里
@@ -56,7 +58,13 @@ export default {
   //组件创建之前  new操作符桥梁函数return 之前
   beforeCreate() {},
   //组件创建之后
-  created() {},
+  created() {
+    this.$nextTick(() => {
+      this.eventBus.$on("footernav", (flags) => {
+        this.is_show = flags;
+      });
+    });
+  },
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
