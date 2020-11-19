@@ -12,7 +12,7 @@
         <a href="javascript:;">
           <div class="list">
             <div class="list-left">
-              <img :src="item.poster" alt="" />
+              <img v-lazy="item.poster" alt="" />
             </div>
             <div class="list-middle">
               <h1>

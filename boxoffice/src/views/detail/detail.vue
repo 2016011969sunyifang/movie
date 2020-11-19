@@ -2,7 +2,7 @@
 <template>
   <div class="detail">
     <div class="img">
-      <img :src="film.poster" />
+      <img v-lazy="film.poster" />
     </div>
     <div class="film-detail">
       <div>

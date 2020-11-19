@@ -10,3 +10,8 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  loading: "/img/loading-svg/loading-bars.svg",
+}
+);
