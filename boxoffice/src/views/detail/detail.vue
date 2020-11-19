@@ -24,6 +24,19 @@
         />
       </div>
     </div>
+
+    <div class="avatar">
+      <div class="avatar-title">演职人员</div>
+      <Swiper :key="film.actors.length">
+        <div
+          v-for="(item, index) in film.actors"
+          :key="index"
+          class="swiper-slide"
+        >
+          <img v-lazy="item.avatarAddress" alt="" />
+        </div>
+      </Swiper>
+    </div>
   </div>
 </template>
 
@@ -32,6 +45,7 @@
 <script>
 import moment from "moment";
 import { moiveDetail } from "@/api/api";
+import Swiper from "./../../components/comswiper";
 export default {
   //组件名字
   name: "detail",
@@ -49,7 +63,7 @@ export default {
     },
   },
   //组件注册
-  components: {},
+  components: { Swiper },
   // vue数据集中管理
   data() {
     return {
@@ -57,6 +71,7 @@ export default {
       film: {},
       flag: false,
       lev: "",
+      film: { actors: [] },
     };
   },
   //方法 函数写这里
@@ -81,7 +96,7 @@ export default {
   beforeCreate() {},
   //组件创建之后
   created() {
-    this.eventBus.$emit("footernav", false);
+    this.eventBus1.$emit("footernav", false);
   },
   //页面渲染之前
   beforeMount() {},
@@ -95,7 +110,7 @@ export default {
   beforeDestroy() {},
   //页面销毁之后
   destroyed() {
-    this.eventBus.$emit("footernav", true);
+    this.eventBus1.$emit("footernav", true);
   },
   //页面视图数据更新之前
   beforeUpdate() {},
@@ -127,8 +142,8 @@ export default {
 @import "../../assets/scss/mixin.scss";
 @import "../../assets/scss/config.scss";
 .detail {
-  @include flex();
-  flex-direction: column;
+  //   @include flex();
+  //   flex-direction: column;
   // position: relative;
   //   overflow: hidden;
   .img {
@@ -177,6 +192,11 @@ export default {
 }
 .middle-code {
   color: #ffb232;
+}
+.swiper-slide {
+  img {
+    width: 80px;
+  }
 }
 </style>
 

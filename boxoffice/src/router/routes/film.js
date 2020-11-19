@@ -1,6 +1,7 @@
 export default {
     path: '/film',
     component: () => import('../../views/film/film.vue'),
+    redirect: '/film/nowplaying',
     children: [
         {
             path: 'nowplaying',
@@ -8,10 +9,6 @@ export default {
         },
         {
             path: 'comingsoon',
-            component: () => import('@/views/film/ComingSoon'),
-        },
-        {
-            path: '/flim',
             component: () => import('@/views/film/ComingSoon'),
         },
     ]

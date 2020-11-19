@@ -14,7 +14,7 @@ new Vue({
 
 
 //使用bus传值
-Vue.prototype.eventBus = new Vue();
+Vue.prototype.eventBus1 = new Vue();
 
 
 import VueLazyload from 'vue-lazyload'

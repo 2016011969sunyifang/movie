@@ -1,18 +1,18 @@
-
 <template>
-  <div id="app">
-    <router-view> </router-view>
-    <comfooternav v-if="is_show"></comfooternav>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- 插槽（坑） -->
+      <slot></slot>
+    </div>
   </div>
 </template>
 
-
-
 <script>
-import comfooternav from "./components/comfooternav.vue";
+import Swiper from "swiper";
+import "swiper/swiper-bundle.min.css";
 export default {
   //组件名字
-  name: "app",
+  name: "swiper",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -27,22 +27,15 @@ export default {
     },
   },
   //组件注册
-  components: {
-    comfooternav,
-  },
+  components: {},
   // vue数据集中管理
   data() {
     return {
       value: "1",
-      is_show: true,
     };
   },
   //方法 函数写这里
-  methods: {
-    aaa() {
-      console.log("aaa");
-    },
-  },
+  methods: {},
   //计算属性
   computed: {},
   //侦听器
@@ -54,20 +47,22 @@ export default {
     },
   },
   //以下是生命周期
-  //组件创建之前  new操作符桥梁函数return 之前
+  //组件创建之前
   beforeCreate() {},
   //组件创建之后
-  created() {
-    this.$nextTick(() => {
-      this.eventBus1.$on("footernav", (flags) => {
-        this.is_show = flags;
-      });
-    });
-  },
+  created() {},
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
-  mounted() {},
+  mounted() {
+    this.$nextTick(() => {
+      new Swiper(".swiper-container", {
+        slidesPerView: 4,
+      
+      });
+    });
+  },
+
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
@@ -94,30 +89,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "./assets/scss/reset.scss";
-@import "./assets/scss/config.scss";
-@import "./assets/scss/button.scss";
-* {
-  margin: 0px;
-  padding: 0px;
-}
-html,
-body {
-  // 不能乱捏
-  touch-action: none;
-  height: 100%;
-  ul li {
-    list-style: none;
-  }
-}
-</style>
-
-
-
-
-
-<style scoped lang="scss">
-</style>
-
-
+<style lang="scss" scoped></style>
