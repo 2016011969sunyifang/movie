@@ -71,22 +71,32 @@ export default {
     godetail(filmId) {
       this.$router.push("/film/" + filmId);
     },
+
+    debounce(func, time) {
+      let timer = 0;
+      return function () {
+        timer && clearTimeout(timer);
+        timer = setTimeout(() => {
+          timer = 0;
+          console.log("我进入了防抖函数");
+          func.apply(this);
+        }, time);
+      };
+    },
     async getData() {
       if (this.flag) {
         //防止拉一次刷新好几次
-        this.flag = false;
         this.pageNum++;
         //获取数据
         if (this.type == 1) {
           //获取数据
           var ret = await nowPlayingListData(this.pageNum);
-          console.log(123123123);
+          console.log("我刷新了数据");
         } else {
           var ret = await ComingSoonListData(this.pageNum);
         }
         this.flag = true;
         if (ret.data.data.films.length < 1) {
-          this.flag = false;
         }
         //拼接显示数据
         // this.data = ret.data.data.films;
@@ -167,12 +177,12 @@ export default {
     }
     this.bs.on("pullingUp", () => {
       // 获取数据
-      this.getData();
+      this.debounce(this.getData(), 5000);
       this.bs.finishPullUp();
     });
     this.bs.on("pullingDown", () => {
       // 获取数据
-      this.getData();
+      this.debounce(this.getData(), 5000);
       //这一步停止当前这一步 下拉刷新  刷新一次够了  要不服务器受不了
       this.bs.finishPullDown();
     });

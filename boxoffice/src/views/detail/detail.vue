@@ -198,6 +198,14 @@ export default {
     width: 80px;
   }
 }
+.avatar {
+  div {
+    margin-bottom: 5px;
+  }
+  border-top: 10px lightgray solid;
+  border-bottom: 10px lightgray solid;
+  padding: 15px;
+}
 </style>
 
 
