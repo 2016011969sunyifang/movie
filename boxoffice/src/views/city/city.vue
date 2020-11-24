@@ -1,18 +1,33 @@
 
 <template>
-  <div id="app">
-    <router-view> </router-view>
-    <comfooternav v-if="is_show"></comfooternav>
+  <div>
+    <van-index-bar :index-list="indexList" heighlight-color="red">
+      <template v-for="(item, index) in dataList">
+        <van-index-anchor :index="item.index" :key="index" />
+        <van-cell
+          v-for="(sub, key) in item.data"
+          :title="sub.name"
+          :key="key"
+          @click="changecity(sub.name, sub.cityId)"
+        />
+      </template>
+    </van-index-bar>
   </div>
 </template>
 
 
 
 <script>
-import comfooternav from "./components/comfooternav.vue";
+import { cityListData } from "@/api/api";
+import Vue from "vue";
+import { IndexBar, IndexAnchor, Cell } from "vant";
+import "vant/lib/index.css";
+Vue.use(IndexBar);
+Vue.use(IndexAnchor);
+Vue.use(Cell);
 export default {
   //组件名字
-  name: "app",
+  name: "city",
   //接收父组件给的东西 type是接收什么东西  default 默认值
   props: {
     list: {
@@ -27,20 +42,24 @@ export default {
     },
   },
   //组件注册
-  components: {
-    comfooternav,
-  },
+  components: {},
   // vue数据集中管理
   data() {
     return {
-      value: "1",
-      is_show: true,
+      dataList: [],
+      indexList: [],
     };
   },
   //方法 函数写这里
   methods: {
-    aaa() {
-      console.log("aaa");
+    changecity(name, id) {
+      this.$store.dispatch("addCity", name);
+      this.$store.dispatch("addCityId", id);
+      // this.$store.commit("addCity", name);
+      // this.$store.commit("addCityId", id);
+      // console.log(name, id);
+      this.$router.push("/cinema");
+      // this.$router.go(-1);
     },
   },
   //计算属性
@@ -57,17 +76,16 @@ export default {
   //组件创建之前  new操作符桥梁函数return 之前
   beforeCreate() {},
   //组件创建之后
-  created() {
-    this.$nextTick(() => {
-      this.eventBus1.$on("footernav", (flags) => {
-        this.is_show = flags;
-      });
-    });
-  },
+  created() {},
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
-  mounted() {},
+  async mounted() {
+    let ret = await cityListData();
+    // console.log(ret);
+    this.dataList = ret[0];
+    this.indexList = ret[1];
+  },
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
@@ -93,25 +111,6 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "./assets/scss/reset.scss";
-@import "./assets/scss/config.scss";
-@import "./assets/scss/button.scss";
-* {
-  margin: 0px;
-  padding: 0px;
-}
-html,
-body {
-  // 不能乱捏
-  // touch-action: none;
-  height: 100%;
-  ul li {
-    list-style: none;
-  }
-}
-</style>
 
 
 

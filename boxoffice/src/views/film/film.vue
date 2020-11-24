@@ -1,6 +1,17 @@
 
 <template>
   <div>
+    <div class="film-header">
+      <div class="film-title">
+        <p>电影</p>
+        <div class="film-city">
+          <a :href="'/city'"
+            ><p>{{ this.$store.state.city }}</p></a
+          >
+        </div>
+      </div>
+    </div>
+
     <!-- <div>
       <img :src="imgUrl" alt="" />
     </div> -->
@@ -134,6 +145,21 @@ export default {
   position: fixed;
   top: 0;
   background-color: #ffffff;
+}
+.film-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.film-city {
+  position: absolute;
+  left: 10px;
+  top: 20px;
+  font-size: 16px;
+  font-weight: normal;
 }
 </style>
 

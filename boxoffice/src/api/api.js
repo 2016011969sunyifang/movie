@@ -5,7 +5,11 @@ import {
     // 正在热映列表请求uri地址
     nowPlayingListUri,
     comingSoonListUri,
-    moiveDetailUrl
+    moiveDetailUrl,
+    cityListUrl,
+    // cinemaListUrl,
+    cinemaListUrl1,
+    cinemaListUrl2,
 } from '@/config/url'
 
 /**
@@ -28,3 +32,35 @@ export const moiveDetail = (filmId) => {
     http.defaults.headers.info = 'info'
     return http.get(moiveDetailUrl + filmId)
 }
+
+export const cityListData = async () => {
+    http.defaults.headers.info = "city";
+    let ret = await http.get(cityListUrl);
+    // console.log(ret);
+    let cities = ret.data.data.cities;
+    let cityIndex = [];//全部26英文字母
+    let dataList = [];//城市信息
+    let indexList = [];//有城市的数据
+    for (let i = 65; i <= 90; i++) {
+        cityIndex.push(String.fromCharCode(i));
+    }
+    // console.log(cityIndex);
+    cityIndex.forEach((index) => {
+        let tmpArr = cities.filter((item) =>
+            index.toLowerCase() == item.pinyin.substr(0, 1));
+        // console.log(tmpArr.length);
+        if (tmpArr.length > 0) {
+            indexList.push(index);
+            dataList.push({ index, data: tmpArr, });
+        }
+    });
+    // 返回promise可以用await接收await苦苦等待一个成功的对象 
+    return Promise.resolve([dataList, indexList]);
+    // return [dataList, indexList];
+};
+
+export const cinemaListData = (city) => {
+    http.defaults.headers.info = 'cinema'
+    // return http.get(cinemaListUrl);
+    return http.get(cinemaListUrl1 + city + cinemaListUrl2);
+};

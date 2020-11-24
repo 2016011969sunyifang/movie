@@ -12,6 +12,10 @@ const routes = [
     path: '/',
     redirect: '/film'
   },
+  {
+    path: '/city',
+    component: () => import('./../views/city/city.vue'),
+  },
   filmRouter,
   center,
   cinema,
