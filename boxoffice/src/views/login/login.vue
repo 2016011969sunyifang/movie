@@ -86,8 +86,7 @@ export default {
           let ret = await userLogin(this.formData);
           if (ret.data.code == 1000) {
             // 登录成功（存储token、跳转）
-            console.log("进入code1000里面了");
-            console.log(ret.data.mobile);
+
             //我们往 vuex 总商店触发mutation变异器 去改变里面的mobile
             this.$store.commit("usermobile", ret.data.mobile);
             this.$message({
@@ -99,7 +98,6 @@ export default {
             }, 3000);
           } else {
             // 登录失败
-            console.log("我进入登陆失败了");
             this.$message({
               message: "fail",
               type: "warning",

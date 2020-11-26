@@ -107,7 +107,7 @@ body {
   // 不能乱捏
   // touch-action: none;
 
-  background-color: #f4f4f4;
+  background-color: #fff;
 
   height: 100%;
   ul li {

@@ -40,11 +40,7 @@ export default {
     };
   },
   //方法 函数写这里
-  methods: {
-    aaa() {
-      console.log("aaa");
-    },
-  },
+  methods: {},
   //计算属性
   computed: {},
   //侦听器

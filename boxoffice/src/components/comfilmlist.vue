@@ -80,7 +80,6 @@ export default {
         if (this.type == 1) {
           //获取数据
           var ret = await nowPlayingListData(this.pageNum);
-          console.log(123123123);
         } else {
           var ret = await ComingSoonListData(this.pageNum);
         }

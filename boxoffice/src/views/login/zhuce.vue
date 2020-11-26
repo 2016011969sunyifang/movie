@@ -1,10 +1,20 @@
 <template>
   <div>
-    <h1>注册</h1>
-    mobile手机 <input type="text" v-model="mobile" /> <br />
-    密码 <input type="text" v-model="password" /> <br />
-
-    <button @click="dianjizhuce">点击注册</button>
+    <div class="regesit">
+      <div class="logo">
+        <img
+          src="https://assets.maizuo.com/h5/mz-auth/public/app/img/logo.19ca0be.png"
+          alt=""
+        />
+      </div>
+      <div class="loginPhone">
+        <input placeholder="手机号" type="text" v-model="mobile" />
+      </div>
+      <div class="loginPhone">
+        <input placeholder="密码" type="text" v-model="password" />
+      </div>
+      <span class="btn btn-huge" @click="dianjizhuce">点击注册</span>
+    </div>
   </div>
 </template>
 
@@ -38,16 +48,12 @@ export default {
   //方法 函数写这里
   methods: {
     dianjizhuce() {
-      // 作业1 这儿要用if else 验证手机号密码 不能为空 格式最好也验证一下 然后再往后走 要不给提示 不行 然后return
-      //作业2 样式写漂亮   原生写 可自定义漂亮 不用每一个人都一样！
-      console.log("进入点击注册了");
       axios
         .post("http://127.0.0.1:3000/zhuce", {
           mobile: this.mobile,
           password: this.password,
         })
         .then((data) => {
-          console.log(data);
           if (data.data.code == "200") {
             this.$message({
               message: data.data.info2,
@@ -77,10 +83,13 @@ export default {
   //组件创建之前
   beforeCreate() {},
   //组件创建之后
-  created() {},
-  //页面渲染之前
-  beforeMount() {},
-  //页面渲染之后
+  created() {
+    this.eventBus1.$emit("footernav", false);
+  },
+  // 出来的时候显示底部导航
+  beforeDestroy() {
+    this.eventBus1.$emit("footernav", true);
+  },
   mounted() {},
   //页面销毁之前
   beforeDestroy() {},
@@ -108,4 +117,43 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.regesit {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //   padding-left: 20px;
+  //   padding-right: 20px;
+  //   background-color: #fff;
+  .logo {
+    margin: 79px auto 40px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    img {
+      height: 60px;
+    }
+  }
+  .loginPhone {
+    padding-left: 45px;
+    line-height: 55px;
+    margin: 0 25px;
+    position: relative;
+    width: 100%;
+    input {
+      height: 15px;
+      line-height: 15px;
+      padding: 20px 0;
+      width: 100%;
+      font-size: 15px;
+      color: #191a1b;
+      border: 0;
+      outline-width: 0;
+    }
+  }
+}
+.btn-huge {
+  margin-top: 40px;
+}
+</style>
