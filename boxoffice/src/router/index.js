@@ -16,6 +16,14 @@ const routes = [
     path: '/city',
     component: () => import('./../views/city/city.vue'),
   },
+  {
+    path: '/login',
+    component: () => import('./../views/login/login.vue'),
+  },
+  {
+    path: '/zhuce',
+    component: () => import('./../views/login/zhuce.vue'),
+  },
   filmRouter,
   center,
   cinema,

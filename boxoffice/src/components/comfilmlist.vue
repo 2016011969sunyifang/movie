@@ -144,6 +144,19 @@ export default {
     //   this.flag = false;
     // }
     this.height = document.documentElement.clientHeight - 100;
+    this.bs = new BScroll(".scroll", {
+      pullUpLoad: true,
+      // 激活下滑的事件监听
+      pullDownRefresh: true,
+      // 它会禁止一些浏览器的事件
+      click: true,
+      mouseWheel: true,
+      disableMouse: false,
+      disableTouch: false,
+      pullUpLoad: {
+        threshold: -20,
+      },
+    });
   },
   //页面销毁之前
   beforeDestroy() {},
@@ -161,6 +174,12 @@ export default {
         pullDownRefresh: true,
         // 它会禁止一些浏览器的事件
         click: true,
+        mouseWheel: true,
+        disableMouse: false,
+        disableTouch: false,
+        pullUpLoad: {
+          threshold: -20,
+        },
       });
     } else {
       this.bs.refresh();
@@ -211,7 +230,7 @@ export default {
     @include wH(66px, 94px);
     img {
       width: 100%;
-      //   height: 100%;
+      height: 100%;
     }
   }
   .list-middle {

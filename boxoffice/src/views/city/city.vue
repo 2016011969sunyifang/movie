@@ -58,8 +58,8 @@ export default {
       // this.$store.commit("addCity", name);
       // this.$store.commit("addCityId", id);
       // console.log(name, id);
-      this.$router.push("/cinema");
-      // this.$router.go(-1);
+      // this.$router.push("/cinema");
+      this.$router.go(-1);
     },
   },
   //计算属性

@@ -8,5 +8,9 @@ export default {
     },
     addCityId(state, id) {
         state.cityId = id;
+    },
+    usermobile(state, step) {
+        console.log('进入usermobile里面了')
+        state.usermobile = step
     }
 }

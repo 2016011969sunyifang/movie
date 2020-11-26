@@ -12,5 +12,6 @@ export const cityListUrl = "gateway?k=3833247";
 // export const cinemaListUrl = "gateway?cityId=310100&ticketFlag=1&k=5332346";
 export const cinemaListUrl1 = "gateway?cityId="
 export const cinemaListUrl2 = "&ticketFlag=1&k=5332346"
-
+//登录
+export const loginUrl = "http://127.0.0.1:3000/api/v1/login";
 // 后续需要可以再添加...

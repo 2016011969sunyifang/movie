@@ -4,10 +4,11 @@
     <div class="film-header">
       <div class="film-title">
         <p>电影</p>
-        <div class="film-city">
-          <a :href="'/city'"
+        <div @click="goCity" class="film-city">
+          <!-- <a :href="'/city'"
             ><p>{{ this.$store.state.city }}</p></a
-          >
+          > -->
+          <p>{{ this.$store.state.city }}</p>
         </div>
       </div>
     </div>
@@ -56,7 +57,11 @@ export default {
     };
   },
   //方法 函数写这里
-  methods: {},
+  methods: {
+    goCity() {
+      this.$router.push("/city");
+    },
+  },
   //计算属性
   computed: {},
   //侦听器

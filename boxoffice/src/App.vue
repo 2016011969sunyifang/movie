@@ -106,6 +106,9 @@ html,
 body {
   // 不能乱捏
   // touch-action: none;
+
+  background-color: #f4f4f4;
+
   height: 100%;
   ul li {
     list-style: none;

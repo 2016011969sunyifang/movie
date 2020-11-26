@@ -113,6 +113,7 @@ export default {
   color: #7a7e83;
   width: 100%;
   ul {
+    width: 100%;
     display: flex;
     align-items: center;
     li {

@@ -10,6 +10,7 @@ import {
     // cinemaListUrl,
     cinemaListUrl1,
     cinemaListUrl2,
+    loginUrl
 } from '@/config/url'
 
 /**
@@ -31,6 +32,11 @@ export const ComingSoonListData = (page = 1) => {
 export const moiveDetail = (filmId) => {
     http.defaults.headers.info = 'info'
     return http.get(moiveDetailUrl + filmId)
+}
+//登录
+export const userLogin = (data) => {
+    //loginurl在上面引入了
+    return http.post(loginUrl, data)
 }
 
 export const cityListData = async () => {
