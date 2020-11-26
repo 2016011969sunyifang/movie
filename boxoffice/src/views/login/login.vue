@@ -86,9 +86,9 @@ export default {
           let ret = await userLogin(this.formData);
           if (ret.data.code == 1000) {
             // 登录成功（存储token、跳转）
-
+            console.log(ret);
             //我们往 vuex 总商店触发mutation变异器 去改变里面的mobile
-            this.$store.commit("usermobile", ret.data.mobile);
+            this.$store.commit("usermobile", ret);
             this.$message({
               message: "success 即将跳转个人中心",
               type: "success",

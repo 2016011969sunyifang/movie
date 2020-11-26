@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     city: '请选择您的城市',
     count: 0,
-    cityId: 310100
+    cityId: 310100,
+    usermobile: ''
   },
   getters: {
     // getCityCount: function (state) {
