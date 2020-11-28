@@ -50,7 +50,7 @@ app.post('/api/v1/login', passwdcrpyt, async (req, res) => {
                     mobile: result.mobile
                 },
                     jwt_secret,
-                    { expiresIn: 60 * 60 }
+                    { expiresIn: 10 }
                 )
             }
         })

@@ -1,6 +1,7 @@
 import vue from 'vue'
 import axios from 'axios'
 axios.defaults.baseURL = "https://m.maizuo.com";
+
 //请求拦截器
 axios.interceptors.request.use(function (config) {
     let host = '';

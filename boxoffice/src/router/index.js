@@ -7,6 +7,8 @@ import filmRouter from '@/router/routes/film.js'
 import cinema from '@/router/routes/cinema.js'
 import center from '@/router/routes/center.js'
 import detail from '@/router/routes/detail.js'
+// import store from '../store'
+import store from './../store/index'
 const routes = [
   {
     path: '/',
@@ -42,4 +44,18 @@ const router = new VueRouter({
   routes
 })
 
+
+//全局路由守卫
+router.beforeEach((to, from, next) => {
+  let arr = ['/center']
+  if (arr.includes(to.path)) {
+    if (store.state.usermobile) {
+      next()
+    } else {
+      next({ path: '/login' })
+    }
+  } else {
+    next()
+  }
+})
 export default router

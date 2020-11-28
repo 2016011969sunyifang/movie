@@ -9,6 +9,7 @@
 
 
 <script>
+import axios from "axios";
 import comfooternav from "./components/comfooternav.vue";
 export default {
   //组件名字
@@ -67,7 +68,28 @@ export default {
   //页面渲染之前
   beforeMount() {},
   //页面渲染之后
-  mounted() {},
+  mounted() {
+    // if (this.$store.state.usermobile.data.data._token) {
+    //   console.log(axios);
+    //   axios({
+    //     method: "get",
+    //     url: "http://127.0.0.1:3000/api/v1/user_info",
+    //     headers: {
+    //       Authorization:
+    //         "bearer " + this.$store.state.usermobile.data.data._token,
+    //     },
+    //   }).then((res) => {
+    //     console.log(res);
+    //     if (res.data.code === "888") {
+    //       console.log("进入失败 ");
+    //       localStorage.removeItem("vuex.data.data._token");
+    //       return;
+    //     }
+    //     console.log(res.data.info2.mobile);
+    //     this.$store.commit("usermobile", res);
+    //   });
+    // }
+  },
   //页面销毁之前
   beforeDestroy() {},
   //页面销毁之后
